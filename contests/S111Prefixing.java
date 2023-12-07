@@ -5,7 +5,7 @@ import java.lang.*;
 import java.io.*;
 
 public class S111Prefixing {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws java.lang.Exception {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
 
@@ -13,21 +13,21 @@ public class S111Prefixing {
             int n = sc.nextInt();
             int a[] = new int[n];
             int maxElem = Integer.MIN_VALUE;
-            Map<Integer, Integer> map = new HashMap<>();
 
             for (int i = 0; i < n; i++) {
                 a[i] = sc.nextInt();
-
                 maxElem = Math.max(maxElem, a[i]);
-                map.putIfAbsent(a[i], i);
             }
 
+            Set<Integer> elementsUpto = new HashSet<>();
             for (int i = 0; i < n; i++) {
-                if (map.get(a[i]) == i) {
-                    System.out.print(a[i] + " ");
-                } else {
+                if (elementsUpto.contains(a[i])) {
                     System.out.print(maxElem + " ");
+                } else {
+                    System.out.print(a[i] + " ");
                 }
+
+                elementsUpto.add(a[i]);
             }
 
             System.out.println();
